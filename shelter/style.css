@@ -1,5 +1,8 @@
 :root {
+  scroll-behavior: smooth;
+
   --color-primary: #f1cdb3;
+  --color-primary-light: #fddcc4;
   --color-light-l: #f6f6f6;
   --color-light-s: #fafafa;
   --color-light-xl: #ffffff;
@@ -17,17 +20,18 @@ body {
 
 h1,
 h2,
+h3,
 h4 {
   font-family: 'Georgia', serif;
   font-weight: 400;
 }
 
-h1 {
+h2 {
   font-size: 44px;
   line-height: 57.2px;
 }
 
-h2 {
+h3 {
   font-size: 35px;
   color: var(--color-dark-l);
   letter-spacing: 0.06em;
@@ -47,7 +51,10 @@ p {
 }
 
 .container {
-  max-width: 1200px;
+  box-sizing: content-box;
+  max-width: 1280px;
+  min-width: 1280px;
+  padding: 0 40px;
   margin: 0 auto;
   box-sizing: border-box;
 }
@@ -63,6 +70,12 @@ p {
   color: var(--color-dark-3xl);
   text-decoration: none;
   border-radius: 100px;
+  transition: all 0.3s;
+}
+
+.button-link:hover {
+  border-color: var(--color-primary-light);
+  background-color: var(--color-primary-light);
 }
 
 .button-link_colored {
@@ -87,10 +100,33 @@ p {
   background-color: transparent;
   border: 2px solid var(--color-primary);
   border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.nav-button:hover {
+  background-color: var(--color-primary-light);
+  border-color: var(--color-primary-light);
+}
+
+.nav-button:active {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  transition-duration: 0.1s;
 }
 
 .nav-button_disabled {
   color: var(--color-dark-s);
+  border-color: var(--color-dark-s);
+  cursor: default;
+}
+
+.nav-button_colored {
+  background-color: var(--color-primary);
+}
+
+.nav-button_disabled:hover {
+  background-color: transparent;
   border-color: var(--color-dark-s);
 }
 
@@ -133,24 +169,34 @@ p {
   text-decoration: none;
 
   --color-wordmark: var(--color-primary);
+  --color-hover: var(--color-primary-light);
   --color-tagline: var(--color-light-xl);
 }
 
 .logo_dark {
   --color-wordmark: var(--color-dark-l);
+  --color-hover: var(--color-dark-m);
   --color-tagline: var(--color-dark-3xl);
 }
 
 .logo__wordmark {
-  font-family: 'Georgia', serif;
+  margin: 0;
   font-size: 32px;
+  /* line-height: normal; */
   color: var(--color-wordmark);
   letter-spacing: 0.06em;
+  transition: all 0.3s;
+}
+
+.logo:hover > .logo__wordmark {
+  color: var(--color-hover);
 }
 
 .logo__tagline {
   margin-top: 9px;
+  margin-bottom: 0;
   font-size: 13px;
+  line-height: normal;
   color: var(--color-tagline);
   letter-spacing: 0.1em;
 }
@@ -158,12 +204,14 @@ p {
 .navigation {
   font-size: 15px;
   --color-link: var(--color-dark-s);
+  --color-hover: var(--color-light-s);
   --color-selected: var(--color-light-s);
   --color-border: var(--color-primary);
 }
 
 .navigation_dark {
   --color-link: var(--color-dark-l);
+  --color-hover: var(--color-dark-3xl);
   --color-selected: var(--color-dark-3xl);
   --color-border: var(--color-primary);
 }
@@ -177,20 +225,33 @@ p {
 .navigation__item {
   padding: 4px 0;
   color: var(--color-link);
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.navigation__item:hover {
+  color: var(--color-hover);
+}
+
+.navigation__item:active {
+  border-bottom: 3px solid var(--color-border);
+  transition-duration: 0.1s;
 }
 
 .navigation__item_selected {
   color: var(--color-selected);
   border-bottom: 3px solid var(--color-border);
+  cursor: default;
 }
 
 .navigation__item:not(:first-child) {
-  margin-left: 35px;
+  margin-left: 36px;
 }
 
 .navigation__link {
   color: inherit;
   text-decoration: none;
+  cursor: inherit;
 }
 
 /* Not only section */
@@ -229,9 +290,9 @@ p {
 
 .about__container {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   /* align-items: center; */
-  padding: 0 175px;
+  /* padding: 0 175px; */
 }
 
 .about__image {
@@ -240,6 +301,7 @@ p {
 
 .about__content {
   max-width: 430px;
+  margin-left: 120px;
 }
 
 .about__heading {
@@ -267,16 +329,21 @@ p {
 
 .our-friends__heading {
   max-width: 400px;
+  margin-top: 29px;
+  font-size: 35px;
+  letter-spacing: 0.06em;
+  line-height: 130%;
+  color: var(--color-dark-l);
   text-align: center;
 }
 
 .our-friends__slider {
   align-self: stretch;
-  margin-top: 29px;
+  margin-top: 23px;
 }
 
 .our-friends__pagination {
-  margin-top: 29px;
+  margin-top: 23px;
 }
 
 .our-friends__button {
@@ -323,19 +390,6 @@ p {
   margin: 0 10px;
 }
 
-.pagination__page-number {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 10px;
-  width: 52px;
-  height: 52px;
-  font-family: 'Georgia', serif;
-  font-size: 20px;
-  background-color: var(--color-primary);
-  border-radius: 50%;
-}
-
 .ward-card {
   display: flex;
   flex-direction: column;
@@ -344,6 +398,17 @@ p {
   background-color: var(--color-light-s);
   border-radius: 9px;
   overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.ward-card:hover {
+  background-color: var(--color-light-xl);
+}
+
+.ward-card:hover > .ward-card__button {
+  border-color: var(--color-primary-light);
+  background-color: var(--color-primary-light);
 }
 
 .ward-card__title {
@@ -364,6 +429,7 @@ p {
 
 .help__heading {
   max-width: 350px;
+  margin-top: 29px;
   text-align: center;
 }
 
@@ -371,7 +437,7 @@ p {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin-top: 15px;
+  margin-top: 9px;
 }
 
 .help__card {
@@ -397,7 +463,6 @@ p {
 
 .in-addition__container {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   justify-content: center;
   /* padding: 0 150px; */
@@ -436,16 +501,28 @@ p {
   display: inline-flex;
   padding: 10px 15px;
   border-radius: 9px;
-  background-color: var(--color-primary);
-}
-
-.credit-card__number {
-  margin-left: 15px;
   font-family: 'Georgia', serif;
   font-size: 20px;
   line-height: 115%;
   letter-spacing: 0.06em;
   color: var(--color-dark-l);
+  background-color: var(--color-primary);
+  /* cursor: pointer; */
+}
+
+.credit-card__link {
+  color: inherit;
+  text-decoration-color: transparent;
+  transition: all 0.3s;
+}
+
+.credit-card__link:hover {
+  /* text-decoration: underline; */
+  text-decoration-color: inherit;
+}
+
+.credit-card__number {
+  margin-left: 15px;
 }
 
 /* Footer */
@@ -478,6 +555,11 @@ p {
   display: flex;
   align-items: center;
   text-decoration: none;
+  transition: all 0.3s;
+}
+
+.footer__link:hover {
+  opacity: 0.7;
 }
 
 .footer__link-text {
