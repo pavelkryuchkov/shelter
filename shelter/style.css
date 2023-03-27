@@ -1,3 +1,26 @@
+@font-face {
+  font-family: 'Georgia';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Georgia'),
+    url(./assets/fonts/georgia-regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Arial';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Arial'), url(./assets/fonts/arial-regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Arial';
+  font-style: italic;
+  font-weight: 400;
+  src: local('Arial-Italic'), local('Arial Italic'),
+    url(./assets/fonts/arial-italic.ttf) format('truetype');
+}
+
 :root {
   scroll-behavior: smooth;
 
@@ -506,19 +529,13 @@ p {
   line-height: 115%;
   letter-spacing: 0.06em;
   color: var(--color-dark-l);
+  text-decoration: none;
   background-color: var(--color-primary);
-  /* cursor: pointer; */
-}
-
-.credit-card__link {
-  color: inherit;
-  text-decoration-color: transparent;
   transition: all 0.3s;
 }
 
-.credit-card__link:hover {
-  /* text-decoration: underline; */
-  text-decoration-color: inherit;
+.credit-card:hover {
+  background-color: var(--color-primary-light);
 }
 
 .credit-card__number {
