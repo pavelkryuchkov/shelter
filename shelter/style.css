@@ -248,6 +248,7 @@ p {
 .navigation__item {
   padding: 4px 0;
   color: var(--color-link);
+  border-bottom: 3px solid transparent;
   transition: all 0.3s;
   cursor: pointer;
 }
@@ -257,7 +258,7 @@ p {
 }
 
 .navigation__item:active {
-  border-bottom: 3px solid var(--color-border);
+  border-color: var(--color-border);
   transition-duration: 0.1s;
 }
 
