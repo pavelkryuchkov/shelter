@@ -76,10 +76,22 @@ p {
 
 .nav-button {
   box-sizing: border-box;
-  padding: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  font-family: 'Georgia', serif;
+  font-size: 20px;
+  color: var(--color-dark-3xl);
   background-color: transparent;
   border: 2px solid var(--color-primary);
   border-radius: 50%;
+}
+
+.nav-button_disabled {
+  color: var(--color-dark-s);
+  border-color: var(--color-dark-s);
 }
 
 .nav-button__ico {
@@ -119,24 +131,41 @@ p {
   flex-direction: column;
   align-items: center;
   text-decoration: none;
+
+  --color-wordmark: var(--color-primary);
+  --color-tagline: var(--color-light-xl);
+}
+
+.logo_dark {
+  --color-wordmark: var(--color-dark-l);
+  --color-tagline: var(--color-dark-3xl);
 }
 
 .logo__wordmark {
   font-family: 'Georgia', serif;
   font-size: 32px;
-  color: var(--color-primary);
+  color: var(--color-wordmark);
   letter-spacing: 0.06em;
 }
 
 .logo__tagline {
-  margin-top: 10px;
+  margin-top: 9px;
   font-size: 13px;
-  color: var(--color-light-xl);
+  color: var(--color-tagline);
   letter-spacing: 0.1em;
 }
 
 .navigation {
   font-size: 15px;
+  --color-link: var(--color-dark-s);
+  --color-selected: var(--color-light-s);
+  --color-border: var(--color-primary);
+}
+
+.navigation_dark {
+  --color-link: var(--color-dark-l);
+  --color-selected: var(--color-dark-3xl);
+  --color-border: var(--color-primary);
 }
 
 .navigation__list {
@@ -147,12 +176,12 @@ p {
 
 .navigation__item {
   padding: 4px 0;
-  color: var(--color-dark-s);
+  color: var(--color-link);
 }
 
 .navigation__item_selected {
-  color: var(--color-light-s);
-  border-bottom: 3px solid var(--color-primary);
+  color: var(--color-selected);
+  border-bottom: 3px solid var(--color-border);
 }
 
 .navigation__item:not(:first-child) {
@@ -167,7 +196,7 @@ p {
 /* Not only section */
 
 .not-only {
-  padding-top: 59px;
+  padding-top: 60px;
 }
 
 .not-only__container {
@@ -246,6 +275,10 @@ p {
   margin-top: 29px;
 }
 
+.our-friends__pagination {
+  margin-top: 29px;
+}
+
 .our-friends__button {
   margin-top: 60px;
 }
@@ -263,6 +296,46 @@ p {
   max-width: 990px;
 }
 
+.pagination {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pagination__cards-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.pagination__card {
+  margin-bottom: 30px;
+}
+
+.pagination__navigation {
+  display: flex;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.pagination__button {
+  margin: 0 10px;
+}
+
+.pagination__page-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 10px;
+  width: 52px;
+  height: 52px;
+  font-family: 'Georgia', serif;
+  font-size: 20px;
+  background-color: var(--color-primary);
+  border-radius: 50%;
+}
+
 .ward-card {
   display: flex;
   flex-direction: column;
@@ -270,6 +343,7 @@ p {
   padding-bottom: 30px;
   background-color: var(--color-light-s);
   border-radius: 9px;
+  overflow: hidden;
 }
 
 .ward-card__title {
