@@ -303,7 +303,7 @@ p {
   cursor: inherit;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 767px) {
   .navigation__burger {
     display: block;
   }
