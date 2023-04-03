@@ -520,6 +520,13 @@ p {
   margin-top: 60px;
 }
 
+@media (max-width: 900px) {
+  .our-friends__pagination {
+    margin-top: -7px;
+    margin-bottom: -24px;
+  }
+}
+
 @media (max-width: 400px) {
   .our-friends {
     padding: 27px 0 26px;
@@ -539,6 +546,11 @@ p {
 
   .our-friends__button {
     margin-top: 42px;
+  }
+
+  .our-friends__pagination {
+    margin-top: 16px;
+    margin-bottom: 1px;
   }
 }
 
@@ -604,26 +616,36 @@ p {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  row-gap: 60px;
 }
 
 .pagination__cards-wrapper {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-}
-
-.pagination__card {
-  margin-bottom: 30px;
+  justify-content: center;
+  gap: 30px 40px;
 }
 
 .pagination__navigation {
   display: flex;
   align-items: center;
-  margin-top: 30px;
+  column-gap: 20px;
 }
 
-.pagination__button {
-  margin: 0 10px;
+@media (max-width: 900px) {
+  .pagination {
+    row-gap: 40px;
+  }
+}
+
+@media (max-width: 400px) {
+  .pagination {
+    row-gap: 42px;
+  }
+
+  .pagination__navigation {
+    column-gap: 10px;
+  }
 }
 
 .ward-card {
