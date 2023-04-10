@@ -112,6 +112,18 @@ function getRandomCards(n, except = []) {
   return res;
 }
 
+function getPaginationCards() {
+  let res = [];
+  for (let i = 0; i < 2; i++) {
+    res = res.concat(getRandomCards(8));
+    res = res.concat(getRandomCards(4, res.slice(-2)));
+    res = res.concat(getRandomCards(4, res.slice(-4)));
+    res = res.concat(getRandomCards(2, res.slice(-4)));
+    res = res.concat(getRandomCards(6, res.slice(-2)));
+  }
+  return res;
+}
+
 function renderCard(card, cardNumber) {
   const cardImage = card.querySelector('img');
   cardImage.src = `./assets/images/pets-${petsData[
@@ -135,7 +147,7 @@ if (document.querySelector('.slider')) {
   renderSliderCards();
 
   function renderSliderCards() {
-    console.log(leftCards, centralCards, rightCards);
+    // console.log(leftCards, centralCards, rightCards);
 
     sliderCards.forEach((card, i) => {
       if (Math.floor(i / 3) === 0) {
@@ -191,19 +203,120 @@ if (document.querySelector('.slider')) {
   });
 }
 
+if (document.querySelector('.pagination')) {
+  const paginationCards = document.querySelectorAll('.pagination__card');
+  const firstPageBtn = document.querySelector('.pagination__button_first-page');
+  const prevPageBtn = document.querySelector('.pagination__button_prev-page');
+  const nextPageBtn = document.querySelector('.pagination__button_next-page');
+  const lastPageBtn = document.querySelector('.pagination__button_last-page');
+  const pageNumberBtn = document.querySelector(
+    '.pagination__button_page-number'
+  );
+
+  const desktopOnly = window.matchMedia('(max-width: 1100px)');
+  const desktopTablet = window.matchMedia('(max-width: 750px)');
+
+  const cardsNumbers = getPaginationCards();
+  // console.log(cardsNumbers);
+  let pageNumber = 1;
+
+  renderPaginationCards(pageNumber);
+
+  function getCardsPerPage() {
+    if (desktopTablet.matches) {
+      return 3;
+    } else if (desktopOnly.matches) {
+      return 6;
+    }
+    return 8;
+  }
+
+  function getMaxPageNumber() {
+    return 48 / getCardsPerPage();
+  }
+
+  function renderPaginationCards(pageNumber) {
+    const cardsToRender = cardsNumbers.slice(
+      (pageNumber - 1) * getCardsPerPage(),
+      pageNumber * getCardsPerPage()
+    );
+    // console.log(cardsToRender);
+
+    cardsToRender.forEach((cardsNumber, i) => {
+      renderCard(paginationCards[i], cardsNumber);
+    });
+  }
+
+  function renderPaginationButtons(pageNumber) {
+    firstPageBtn.classList.remove('nav-button_disabled');
+    firstPageBtn.removeAttribute('disabled');
+    prevPageBtn.classList.remove('nav-button_disabled');
+    prevPageBtn.removeAttribute('disabled');
+    nextPageBtn.classList.remove('nav-button_disabled');
+    nextPageBtn.removeAttribute('disabled');
+    lastPageBtn.classList.remove('nav-button_disabled');
+    lastPageBtn.removeAttribute('disabled');
+
+    if (pageNumber === 1) {
+      firstPageBtn.classList.add('nav-button_disabled');
+      firstPageBtn.setAttribute('disabled', true);
+      prevPageBtn.classList.add('nav-button_disabled');
+      prevPageBtn.setAttribute('disabled', true);
+    }
+    if (pageNumber === getMaxPageNumber()) {
+      nextPageBtn.classList.add('nav-button_disabled');
+      nextPageBtn.setAttribute('disabled', true);
+      lastPageBtn.classList.add('nav-button_disabled');
+      lastPageBtn.setAttribute('disabled', true);
+    }
+
+    pageNumberBtn.textContent = pageNumber;
+  }
+
+  firstPageBtn.addEventListener('click', () => {
+    pageNumber = 1;
+    renderPaginationCards(pageNumber);
+    renderPaginationButtons(pageNumber);
+  });
+
+  prevPageBtn.addEventListener('click', () => {
+    pageNumber = Math.max(1, pageNumber - 1);
+    renderPaginationCards(pageNumber);
+    renderPaginationButtons(pageNumber);
+  });
+
+  nextPageBtn.addEventListener('click', () => {
+    pageNumber = Math.min(getMaxPageNumber(), pageNumber + 1);
+    renderPaginationCards(pageNumber);
+    renderPaginationButtons(pageNumber);
+  });
+
+  lastPageBtn.addEventListener('click', () => {
+    pageNumber = getMaxPageNumber();
+    renderPaginationCards(pageNumber);
+    renderPaginationButtons(pageNumber);
+  });
+
+  desktopOnly.addEventListener('change', () => {
+    pageNumber = 1;
+    renderPaginationCards(pageNumber);
+    renderPaginationButtons(pageNumber);
+  });
+
+  desktopTablet.addEventListener('change', () => {
+    pageNumber = 1;
+    renderPaginationCards(pageNumber);
+    renderPaginationButtons(pageNumber);
+  });
+}
+
 // Самопроверка
 
-// console.log(
-//   `Самопроверка: 100 / 100
+console.log(
+  `Самопроверка: 110 / 110
 
-// 1. Вёрстка страницы Main соответствует макету при ширине экрана 1280px: +14
-// 2. Вёрстка страницы Main соответствует макету при ширине экрана 768px: +14
-// 3. Вёрстка страницы Main соответствует макету при ширине экрана 320px: +14
-// 4. Вёрстка страницы Pets соответствует макету при ширине экрана 1280px: +6
-// 5. Вёрстка страницы Pets соответствует макету при ширине экрана 768px: +6
-// 6. Вёрстка страницы Pets соответствует макету при ширине экрана 320px: +6
-// 7. Ни на одном из разрешений до 320px включительно не появляется горизонтальная полоса прокрутки, справа от отдельных блоков не появляются белые поля. Весь контент страницы при этом сохраняется: не обрезается и не удаляется: +20
-// 8. Верстка резиновая: при плавном изменении размера экрана от 1280px до 320px верстка подстраивается под этот размер, элементы верстки меняют свои размеры и расположение, не наезжают друг на друга, изображения могут менять размер, но сохраняют правильные пропорции: +8
-// 9. При ширине экрана меньше 768px на обеих страницах меню в хедере скрывается, появляется иконка бургер-меню: +4
-// 10. Верстка обеих страниц валидная: +8`
-// );
+1. Реализация burger menu на обеих страницах: +26
+2. Реализация слайдера-карусели на странице Main: +36
+3. Реализация пагинации на странице Pets: +36
+4. Реализация попап на обеих страницах: +12`
+);
