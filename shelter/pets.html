@@ -21,8 +21,8 @@
           Shelter&nbsp;for&nbsp;pets&nbsp;in&nbsp;Boston
         </p>
       </a>
-      <div class="navigation navigation_dark">
-        <img src="./assets/icons/Burger-dark.svg" alt="Burger" class="navigation__burger">
+      <div class="navigation navigation_light">
+        <div class="navigation__backdrop"></div>
         <ul class="navigation__list">
           <li class="navigation__item">
             <a href="./index.html" class="navigation__link">About&nbsp;the&nbsp;shelter</a>
@@ -33,6 +33,11 @@
               class="navigation__link">Help&nbsp;the&nbsp;shelter</a></li>
           <li class="navigation__item"><a href="#footer" class="navigation__link">Contacts</a></li>
         </ul>
+        <div class="navigation__burger">
+          <div class="navigation__burger-line"></div>
+          <div class="navigation__burger-line"></div>
+          <div class="navigation__burger-line"></div>
+        </div>
       </div>
     </div>
   </header>
@@ -44,42 +49,42 @@
       </h3>
       <div class="pagination our-friends__pagination">
         <div class="pagination__cards-wrapper">
-          <div class="ward-card pagination__card">
+          <div class="ward-card pagination__card" data-card-number="4">
             <img src="./assets/images/pets-katrine.jpg" alt="Katrine">
             <h4 class="ward-card__title">Katrine</h4>
             <a href="#no_scroll" class="button-link button-link_bordered ward-card__button">Learn more</a>
           </div>
-          <div class="ward-card pagination__card">
+          <div class="ward-card pagination__card" data-card-number="0">
             <img src="./assets/images/pets-jennifer.jpg" alt="Jennifer">
             <h4 class="ward-card__title">Jennifer</h4>
             <a href="#no_scroll" class="button-link button-link_bordered ward-card__button">Learn more</a>
           </div>
-          <div class="ward-card pagination__card">
+          <div class="ward-card pagination__card" data-card-number="2">
             <img src="./assets/images/pets-woody.jpg" alt="Woody">
             <h4 class="ward-card__title">Woody</h4>
             <a href="#no_scroll" class="button-link button-link_bordered ward-card__button">Learn more</a>
           </div>
-          <div class="ward-card ward-card_display_desktop-tablet pagination__card">
+          <div class="ward-card ward-card_display_desktop-tablet pagination__card" data-card-number="1">
             <img src="./assets/images/pets-sophia.jpg" alt="Sophia">
             <h4 class="ward-card__title">Sophia</h4>
             <a href="#no_scroll" class="button-link button-link_bordered ward-card__button">Learn more</a>
           </div>
-          <div class="ward-card ward-card_display_desktop-tablet pagination__card">
+          <div class="ward-card ward-card_display_desktop-tablet pagination__card" data-card-number="5">
             <img src="./assets/images/pets-timmy.jpg" alt="Timmy">
             <h4 class="ward-card__title">Timmy</h4>
             <a href="#no_scroll" class="button-link button-link_bordered ward-card__button">Learn more</a>
           </div>
-          <div class="ward-card ward-card_display_desktop-tablet pagination__card">
+          <div class="ward-card ward-card_display_desktop-tablet pagination__card" data-card-number="7">
             <img src="./assets/images/pets-charly.jpg" alt="Charly">
             <h4 class="ward-card__title">Charly</h4>
             <a href="#no_scroll" class="button-link button-link_bordered ward-card__button">Learn more</a>
           </div>
-          <div class="ward-card ward-card_display_desktop-only pagination__card">
+          <div class="ward-card ward-card_display_desktop-only pagination__card" data-card-number="3">
             <img src="./assets/images/pets-scarlett.jpg" alt="Scarlett">
             <h4 class="ward-card__title">Scarlett</h4>
             <a href="#no_scroll" class="button-link button-link_bordered ward-card__button">Learn more</a>
           </div>
-          <div class="ward-card ward-card_display_desktop-only pagination__card">
+          <div class="ward-card ward-card_display_desktop-only pagination__card" data-card-number="6">
             <img src="./assets/images/pets-freddie.jpg" alt="Freddie">
             <h4 class="ward-card__title">Freddie</h4>
             <a href="#no_scroll" class="button-link button-link_bordered ward-card__button">Learn more</a>
@@ -102,6 +107,39 @@
             &gt;&nbsp;&gt;
           </button>
         </div>
+      </div>
+    </div>
+    <div class="ward-modal">
+      <div class="ward-modal__card">
+        <img src="./assets/modal/jennifer.png" alt="Jennifer" class="ward-modal__image">
+        <div class="ward-modal__content">
+          <h3 class="ward-modal__heading">Jennifer</h3>
+          <h4 class="ward-modal__subheading">Dog - Labrador</h4>
+          <p class="ward-modal__description">Jennifer is a sweet 2 months old Labrador that is patiently waiting to find
+            a new forever home. This girl really enjoys being able to go outside to run and play, but won't hesitate to
+            play up a storm in the house if she has all of her favorite toys.</p>
+          <ul class="ward-modal__list">
+            <li class="ward-modal__list-item">
+              <span class="ward-modal__list-heading">Age:</span>
+              2 months
+            </li>
+            <li class="ward-modal__list-item">
+              <span class="ward-modal__list-heading">Inoculations:</span>
+              none
+            </li>
+            <li class="ward-modal__list-item">
+              <span class="ward-modal__list-heading">Diseases:</span>
+              none
+            </li>
+            <li class="ward-modal__list-item">
+              <span class="ward-modal__list-heading">Parasites:</span>
+              none
+            </li>
+          </ul>
+        </div>
+        <button class="nav-button ward-modal__button">
+          <span class="nav-button__ico nav-button__ico_cross"></span>
+        </button>
       </div>
     </div>
   </section>
@@ -142,7 +180,7 @@
     </div>
   </footer>
 
-  <script src="./index.js"></script>
+  <script src="./index.js" type="module"></script>
 </body>
 
 </html>
