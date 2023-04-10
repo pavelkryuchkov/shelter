@@ -32,7 +32,7 @@ menu.addEventListener('click', (event) => {
 // Попап
 
 const cardsWrapper =
-  document.querySelector('.slider__cards-wrapper') ||
+  document.querySelector('.slider__window') ||
   document.querySelector('.pagination__cards-wrapper');
 const closeModalButton = document.querySelector('.ward-modal__button');
 const modal = document.querySelector('.ward-modal');
@@ -93,6 +93,102 @@ ${petsData[cardNumber].parasites.join(', ')}
 </li>`;
 
   modalList.innerHTML = listContent;
+}
+
+// Карусель и пагинация
+
+function getRandomCard() {
+  return Math.floor(Math.random() * 8);
+}
+
+function getRandomCards(n, except = []) {
+  const res = [];
+  while (res.length < n) {
+    const num = getRandomCard();
+    if (!res.includes(num) && !except.includes(num)) {
+      res.push(num);
+    }
+  }
+  return res;
+}
+
+function renderCard(card, cardNumber) {
+  const cardImage = card.querySelector('img');
+  cardImage.src = `./assets/images/pets-${petsData[
+    cardNumber
+  ].name.toLowerCase()}.jpg`;
+  cardImage.alt = petsData[cardNumber].name;
+  card.querySelector('.ward-card__title').textContent =
+    petsData[cardNumber].name;
+  card.setAttribute('data-card-number', cardNumber);
+}
+
+if (document.querySelector('.slider')) {
+  const sliderButtons = document.querySelectorAll('.slider__button');
+  const slidesContainer = document.querySelector('.slider__window-inner');
+  const sliderCards = document.querySelectorAll('.slider__card');
+
+  let centralCards = getRandomCards(3);
+  let leftCards = getRandomCards(3, centralCards);
+  let rightCards = getRandomCards(3, centralCards);
+
+  renderSliderCards();
+
+  function renderSliderCards() {
+    console.log(leftCards, centralCards, rightCards);
+
+    sliderCards.forEach((card, i) => {
+      if (Math.floor(i / 3) === 0) {
+        renderCard(card, leftCards[i % 3]);
+      } else if (Math.floor(i / 3) === 1) {
+        renderCard(card, centralCards[i % 3]);
+      } else if (Math.floor(i / 3) === 2) {
+        renderCard(card, rightCards[i % 3]);
+      }
+    });
+  }
+
+  function disableButtons() {
+    sliderButtons.forEach((button) => {
+      button.classList.add('nav-button_disabled');
+      button.setAttribute('disabled', true);
+    });
+  }
+
+  function enableButtons() {
+    sliderButtons.forEach((button) => {
+      button.classList.remove('nav-button_disabled');
+      button.removeAttribute('disabled');
+    });
+  }
+
+  sliderButtons.forEach((button, i) => {
+    button.addEventListener('click', () => {
+      disableButtons();
+      if (i === 0) {
+        slidesContainer.classList.add('slider__window-inner_move-left');
+        slidesContainer.classList.remove('slider__window-inner_move-right');
+        rightCards = centralCards;
+        centralCards = leftCards;
+        leftCards = getRandomCards(3, centralCards);
+      } else if (i === 1) {
+        slidesContainer.classList.remove('slider__window-inner_move-left');
+        slidesContainer.classList.add('slider__window-inner_move-right');
+        leftCards = centralCards;
+        centralCards = rightCards;
+        rightCards = getRandomCards(3, centralCards);
+      }
+    });
+  });
+
+  slidesContainer.addEventListener('transitionend', (event) => {
+    if (event.target === slidesContainer) {
+      renderSliderCards();
+      slidesContainer.classList.remove('slider__window-inner_move-left');
+      slidesContainer.classList.remove('slider__window-inner_move-right');
+      enableButtons();
+    }
+  });
 }
 
 // Самопроверка
